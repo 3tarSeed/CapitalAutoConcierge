@@ -1,0 +1,1 @@
+import{t as e}from"./rsc-B1C8YLg6.js";var t=e(()=>{throw Error(`Unexpectedly client reference export 'Header' is called on server`)},`00b2866cb45d`,`Header`),n=e(()=>{throw Error(`Unexpectedly client reference export 'default' is called on server`)},`00b2866cb45d`,`default`);export{n,t};

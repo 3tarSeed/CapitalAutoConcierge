@@ -1,0 +1,1 @@
+import{t as e}from"./framework~index~layout~page~page~page~app-page-cache-render~app-page-cache~app-route-handle~hvoogbt5-BaG-SmQF.js";import{n as t}from"./estimator-3hscB9qQ.js";var n=e();function r(){return(0,n.jsx)(t,{})}export{r as default};
