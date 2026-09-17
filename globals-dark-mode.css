@@ -1,0 +1,32 @@
+/* Add to app/globals.css, after the existing :root / .dark blocks.
+   Tailwind v4 + shadcn already define --background, --foreground, --card,
+   --muted-foreground, --border, --primary, --primary-foreground, --destructive.
+   Point every custom class at those tokens; delete the hard-coded hex values. */
+
+body { background: var(--background); color: var(--foreground); }
+
+.eyebrow, .muted, .fine, small { color: var(--muted-foreground); }
+
+.field input, .field textarea, .field select {
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.primary { background: var(--primary); color: var(--primary-foreground); }
+
+.lead-list, .lead-detail, .loading-box { background: var(--card); border: 1px solid var(--border); }
+.lead-row { border-bottom: 1px solid var(--border); }
+.lead-row.active { background: var(--accent); }
+
+.badge { background: var(--muted); color: var(--muted-foreground); }
+.badge.urgent { background: var(--destructive); color: var(--primary-foreground); }
+.error, .warning { border: 1px solid var(--destructive); }
+
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--card); color: var(--foreground);
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--accent); }
