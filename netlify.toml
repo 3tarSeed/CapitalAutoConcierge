@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Turbopack's persistent cache is never deployed; keep the secrets scanner off it.
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**,.next/cache/**"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
