@@ -1,33 +1,11 @@
 'use client';
+import {useState} from 'react';
+import {usePathname} from 'next/navigation';
+import {Calculator,CircleDollarSign,MessageSquare} from 'lucide-react';
+import ContactForm from './contact-form';
 
-import { Calculator, CircleDollarSign, ClipboardList } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-
-const items = [
-  { href: '/', label: 'Estimate', icon: Calculator },
-  { href: '/pricing', label: 'Pricing', icon: CircleDollarSign },
-  { href: '/leads', label: 'Leads', icon: ClipboardList },
-];
-
-export default function MobileNav() {
-  const pathname = usePathname();
-
-  return (
-    <nav className="mobile-nav" aria-label="Mobile navigation">
-      {items.map(({ href, label, icon: Icon }) => {
-        const active = href === '/' ? pathname === href : pathname.startsWith(href);
-        return (
-          <a
-            href={href}
-            key={href}
-            className={active ? 'active' : undefined}
-            aria-current={active ? 'page' : undefined}
-          >
-            <Icon aria-hidden="true" size={22} strokeWidth={1.8} />
-            <span>{label}</span>
-          </a>
-        );
-      })}
-    </nav>
-  );
+export default function MobileNav(){
+ const path=usePathname();const [contact,setContact]=useState(false);
+ const item=(href:string,label:string,Icon:typeof Calculator)=><a href={href} className={path===href?'active':''} aria-current={path===href?'page':undefined}><Icon size={22} aria-hidden/>{label}</a>;
+ return <><nav className="mobile-nav" aria-label="Main">{item('/','Estimate',Calculator)}{item('/pricing','Pricing',CircleDollarSign)}<button type="button" className={contact?'active':''} onClick={()=>setContact(true)}><MessageSquare size={22} aria-hidden/>Contact</button></nav><ContactForm open={contact} onOpenChange={setContact}/></>;
 }
