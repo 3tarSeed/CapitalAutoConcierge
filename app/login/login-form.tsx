@@ -14,7 +14,7 @@ export default function LoginForm({ returnTo }: { returnTo: string }) {
     setBusy(true); setError("");
     const { error } = await createClient().auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) { setError("Sign-in failed. Check your email and password."); return; }
+    if (error) { setError(error.message.includes("Invalid login") ? "Sign-in failed. Check your email and password." : `Sign-in failed: ${error.message}`); return; }
     const safe = returnTo.startsWith("/") && !returnTo.startsWith("//") ? returnTo : "/leads";
     router.replace(safe);
     router.refresh();
