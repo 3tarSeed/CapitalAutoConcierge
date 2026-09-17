@@ -1,5 +1,6 @@
 import { adminClient } from "@/lib/supabase/admin";
 import { contactSchema } from "@/lib/contact-schema";
+import { sameOrigin } from "@/lib/same-origin";
 
 export const dynamic = "force-dynamic";
 const reply = (data: unknown, status = 200) =>
@@ -19,8 +20,7 @@ async function emailStaff(m: { name: string; phone: string; email: string; messa
 }
 
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) return reply({ error: "Invalid request origin." }, 403);
+  if (!sameOrigin(request)) return reply({ error: "Invalid request origin." }, 403);
   try {
     const body = await request.text();
     if (body.length > 8000) return reply({ error: "Message too long." }, 413);
