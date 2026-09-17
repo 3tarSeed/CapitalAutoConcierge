@@ -5,6 +5,9 @@
   "type": "module",
   "engines": { "node": ">=22.13.0" },
   "packageManager": "pnpm@11.25.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["unrs-resolver", "sharp", "@tailwindcss/oxide"]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
