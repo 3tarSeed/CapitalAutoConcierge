@@ -1,4 +1,4 @@
-onlyBuiltDependencies:
-  - unrs-resolver
-  - sharp
-  - '@tailwindcss/oxide'
+allowBuilds:
+  unrs-resolver: true
+  sharp: true
+  '@tailwindcss/oxide': true
