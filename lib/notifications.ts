@@ -1,8 +1,8 @@
 
-type EstimateLine={name:string;package:string;low?:number;high?:number};
+type EstimateLine={name:string;package:string;low?:number|null;high?:number|null};
 type LeadNotification={
  requestId:string;name:string;phone:string;email:string;year:string;make:string;model:string;trim?:string;
- timing:string;deadline?:string;selected:string[]|Record<string,string>;estimate:{low:number;high:number;lines:EstimateLine[]};
+ timing:string;deadline?:string;selected:string[]|Record<string,string>;estimate:{low?:number|null;high?:number|null;lines:EstimateLine[]};
 };
 
 const vars=()=>process.env as Record<string,string|undefined>;
@@ -13,7 +13,8 @@ const defaultDesk='https://capitalautoconcierge.netlify.app/leads';
 
 function summary(lead:LeadNotification){
  const vehicle=[lead.year,lead.make,lead.model,lead.trim].filter(Boolean).join(' ');
- const estimate=lead.estimate.low||lead.estimate.high?`${money(lead.estimate.low)}–${money(lead.estimate.high)}`:'Manual estimate';
+ const lo=lead.estimate.low??0,hi=lead.estimate.high??0;
+ const estimate=lo||hi?`${money(lo)}–${money(hi)}`:'Manual estimate';
  const deadline=lead.deadline?` (${lead.deadline})`:'';
  return {vehicle,estimate,deadline,ref:lead.requestId.slice(0,8).toUpperCase()};
 }
